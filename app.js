@@ -1,5 +1,6 @@
 // import functions and grab DOM elements
 import { makeStatsString } from './utils.js';
+
 const headDropdown = document.getElementById('head-dropdown');
 const middleDropdown = document.getElementById('middle-dropdown');
 const bottomDropdown = document.getElementById('bottom-dropdown');
@@ -22,20 +23,21 @@ let bottomCount = 0;
 // set state for all of the character's catchphrases
 let catchphrases = [];
 
-headDropdown.addEventListener('change', () => {
+headDropdown.addEventListener('change', (e) => {
     // get the value of the head dropdown
-
+    const value = e.target.value;
     // increment the head change count state
-    
+    headCount++;
     // update the dom for the head (use style.backgroundImage on the bottomEl div instead of trying to set the .src -- it's NOT an img tag!)
-
+    headEl.style.backgroundImage = `url("./assets/${value}-head.png")`;
     // update the stats to show the new count (refactor to/call displayStats() to do this work)
+    reportEl.textContent = makeStatsString(headCount, middleCount, bottomCount);
 });
 
 
 middleDropdown.addEventListener('change', () => {
     // get the value of the middle dropdown
-
+    
     // increment the middle change count state
     
     // update the dom for the middle (NOTE: use style.backgroundImage on the middleEl div instead of trying to set the .src -- it's NOT an img tag!)
@@ -67,7 +69,9 @@ catchphraseButton.addEventListener('click', () => {
 
 function displayStats() {
     // change the text contentof the reportEl to tell the user how many times they've changed each piece of the state
-    const statsString = makeStatsString(); // call this function with the correct arguments
+    const statsString = makeStatsString(headCount, middleCount, bottomCount); // call this function with the correct arguments
+    
+    reportEl.textContent = statsString;
 }
 
 function displayCatchphrases() {
