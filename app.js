@@ -35,36 +35,38 @@ headDropdown.addEventListener('change', (e) => {
 });
 
 
-middleDropdown.addEventListener('change', () => {
+middleDropdown.addEventListener('change', (e) => {
     // get the value of the middle dropdown
-    
+    const value = e.target.value;
     // increment the middle change count state
-    
+    middleCount++;
     // update the dom for the middle (NOTE: use style.backgroundImage on the middleEl div instead of trying to set the .src -- it's NOT an img tag!)
-
+    middleEl.style.backgroundImage = `url("./assets/${value}-middle.png")`;
     // update the stats to show the new count (refactor to/call displayStats() to do this work)
+    reportEl.textContent = makeStatsString(headCount, middleCount, bottomCount);
 });
 
 
-bottomDropdown.addEventListener('change', () => {
+bottomDropdown.addEventListener('change', (e) => {
     // get the value of the bottom dropdown
-
+    const value = e.target.value;
     // increment the bottom change count state
-    
+    bottomCount++;
     // update the dom for the bottom (NOTE use style.backgroundImage on the bottomEl div instead of trying to set the .src -- it's NOT an img tag!)
-
+    bottomEl.style.backgroundImage = `url("./assets/${value}-pants.png")`;
     // update the stats to show the new count (refactor to/call displayStats() to do this work)
+    reportEl.textContent = makeStatsString(headCount, middleCount, bottomCount);
 });
 
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
-    
+    const value = catchphraseInput.value;
     // push the new catchphrase to the catchphrase array in state
-
+    catchphrases.push(value);
     // clear out the form input's value so it's empty to the user
-   
+    catchphraseInput.value = '';
     // update the dom to show the new catchphrases (refactor to/call displayCatchphrases to do this work)
-
+    displayCatchphrases();
 });
 
 function displayStats() {
@@ -76,9 +78,11 @@ function displayStats() {
 
 function displayCatchphrases() {
     // clear out the DOM for the currently displayed catchphrases
-
+    catchphrasesEl.textContent = '';
     // loop through each catchphrase in state
-   
+    for (let catchphrase of catchphrases) {
+        
+    }
     // and for each catchphrase
     
     // create an HTML element with the catchphrase as its text content
