@@ -59,6 +59,7 @@ header img {
 
 p {
     margin: var(--gutter);
+    color: rgb(11, 238, 242);
 }
   
 footer {
@@ -94,7 +95,8 @@ footer {
 
 main {
     display: flex;
-    background-color: white;
+    background-image: url('../assets/trippy.jpg');
+    background-size: 1200px;
     margin: 0 auto;
     width: 100%;
     max-width: 800px;
